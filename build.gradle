@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.2'
+    id 'io.spring.dependency-management' version '1.1.6'
+    id 'maven-publish'
+}
+
+group = 'com.ugf360'
+version = '0.1'
+
+java {
+    sourceCompatibility = '23'
+}
+
+
+bootRun {
+    mainClass = 'com.ugf360.DbdemoApplication'  // Specify the fully qualified main class
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
+    // implementation 'org.springframework.batch:spring-batch-core:5.1.2'
+    implementation group: 'org.springframework.batch', name: 'spring-batch-core', version: '5.1.2'
+    implementation 'org.apache.poi:poi-ooxml:5.3.0'
+    // runtimeOnly 'com.mysql:mysql-connector-j'
+        // H2 Database (for development)
+    runtimeOnly 'com.h2database:h2'
+    // testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//    implementation 'com.ugf360:datastore:0.2.8'
+    // implementation 'com.google.code.gson:gson:2.7'
+}
+
+
+tasks.named("jar") {
+    enabled = false
+}
+
+wrapper {
+    gradleVersion = '8.11' //version required
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
